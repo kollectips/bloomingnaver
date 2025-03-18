@@ -8,7 +8,7 @@ BASE_URL = f"https://blog.naver.com/{BLOG_ID}/"  # 블로그 메인 URL
 RSS_URL = f"https://rss.blog.naver.com/{BLOG_ID}.xml"  # RSS 피드 URL
 
 # 사이트맵 파일 이름
-SITEMAP_FILE = "sitemap.xml"
+SITEMAP_FILE = "sitemap_index.xml"
 
 # RSS 피드 가져오기
 response = requests.get(RSS_URL)
