@@ -5,7 +5,7 @@ from datetime import datetime
 # 네이버 블로그 정보
 BLOG_ID = "bloomingdreamer"
 BASE_URL = f"https://blog.naver.com/{BLOG_ID}/"  # 블로그 메인 URL
-BASE_URL2 = f"https://kollectips.netlify.app/"
+BASEE_URL = "https://kollectips.netlify.app/"
 RSS_URL = f"https://rss.blog.naver.com/{BLOG_ID}.xml"  # RSS 피드 URL
 
 # 사이트맵 파일 이름
@@ -26,7 +26,7 @@ sitemap = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.
 
 # 🔹 1️⃣ 블로그 메인 페이지 추가
 main_url_element = ET.SubElement(sitemap, "url")
-ET.SubElement(main_url_element, "loc").text = BASE_URL2  # 블로그 메인 URL
+ET.SubElement(main_url_element, "loc").text = BASEE_URL  # 블로그 메인 URL
 ET.SubElement(main_url_element, "lastmod").text = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+09:00")  # 현재 날짜 & 시간
 ET.SubElement(main_url_element, "changefreq").text = "daily"
 ET.SubElement(main_url_element, "priority").text = "1.0"
