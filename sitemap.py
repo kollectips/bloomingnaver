@@ -44,8 +44,6 @@ for item in items:
     url_element = ET.SubElement(sitemap, "url")
     ET.SubElement(url_element, "loc").text = post_url
     ET.SubElement(url_element, "lastmod").text = formatted_date  # +09:00 형식 적용됨
-    ET.SubElement(url_element, "changefreq").text = "daily"
-    ET.SubElement(url_element, "priority").text = "0.8"
 
 # XML 파일 저장
 tree = ET.ElementTree(sitemap)
