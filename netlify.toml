@@ -2,6 +2,11 @@
   command = "python3 sitemap.py"
   publish = "/"
 
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+
 [[redirects]]
   from = "/sitemap.xml"
   to = "/sitemap.xml"
