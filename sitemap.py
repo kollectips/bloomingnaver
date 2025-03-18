@@ -30,19 +30,25 @@ for item in items:
     post_url = item.find("link").text
     pub_date = item.find("pubDate").text  # 네이버 RSS의 pubDate 값 가져오기
 
-    # pubDate를 "%Y-%m-%dT%H:%M:%S%z" 형식으로 변환
+    # pubDate를 datetime 객체로 변환
     dt = datetime.strptime(pub_date, "%a, %d %b %Y %H:%M:%S %z")
-    formatted_date = dt.strftime("%Y-%m-%dT%H:%M:%S%z")  # +09:00 유지
+
+    # UTC 오프셋을 +09:00 형식으로 변환
+    timezone_offset = dt.strftime("%z")  # +0900 형태
+    timezone_offset = f"{timezone_offset[:3]}:{timezone_offset[3:]}"  # +09:00 형태로 변환
+
+    # 최종 ISO 8601 형식 (YYYY-MM-DDTHH:MM:SS+09:00)
+    formatted_date = dt.strftime("%Y-%m-%dT%H:%M:%S") + timezone_offset
 
     # Sitemap에 추가
     url_element = ET.SubElement(sitemap, "url")
     ET.SubElement(url_element, "loc").text = post_url
-    ET.SubElement(url_element, "lastmod").text = formatted_date  # 시간까지 포함된 lastmod
+    ET.SubElement(url_element, "lastmod").text = formatted_date  # +09:00 형식 적용됨
     ET.SubElement(url_element, "changefreq").text = "daily"
-    ET.SubElement(url_element, "priority").text = "1"
+    ET.SubElement(url_element, "priority").text = "0.8"
 
 # XML 파일 저장
 tree = ET.ElementTree(sitemap)
 tree.write(SITEMAP_FILE, encoding="utf-8", xml_declaration=True)
 
-print(f"✅ 사이트맵이 '{SITEMAP_FILE}' 파일로 생성되었습니다! (lastmod 시간 포함)")
+print(f"✅ 사이트맵이 '{SITEMAP_FILE}' 파일로 생성되었습니다! (lastmod 시간 +09:00 형식 적용)")
