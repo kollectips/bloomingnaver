@@ -5,7 +5,7 @@ from datetime import datetime
 # 네이버 블로그 정보
 BLOG_ID = "bloomingdreamer"
 BASE_URL = f"https://blog.naver.com/{BLOG_ID}/"  # 블로그 메인 URL
-BASEE_URL = "https://kollectips.netlify.app/"
+BASEE_URL = "https://kollectips.netlify.app"
 RSS_URL = f"https://rss.blog.naver.com/{BLOG_ID}.xml"  # RSS 피드 URL
 
 # 사이트맵 파일 이름
